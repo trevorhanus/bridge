@@ -1,0 +1,14 @@
+{
+  "name": "bridge",
+  "version": "0.0.1",
+  "description": "slack for construction",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Trevor Hanus",
+  "license": "ISC",
+  "dependencies": {
+    "twilio": "^2.3.0"
+  }
+}
