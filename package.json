@@ -9,6 +9,5 @@
   "author": "Trevor Hanus",
   "license": "ISC",
   "dependencies": {
-    "twilio": "^2.3.0"
   }
 }
