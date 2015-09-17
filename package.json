@@ -4,10 +4,18 @@
   "description": "slack for construction",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
-  "author": "Trevor Hanus",
+  "author": "Trevor Hanus, Cody B. Daig",
   "license": "ISC",
   "dependencies": {
+    "chai": "^3.2.0",
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.1.3",
+    "gulp-nodemon": "^2.0.4",
+    "run-sequence": "^1.1.3"
   }
 }
