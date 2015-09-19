@@ -10,7 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^3.2.0",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "mysql": "^2.9.0",
+    "q": "^1.4.1",
+    "sinon": "^1.16.1"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
