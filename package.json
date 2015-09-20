@@ -9,6 +9,7 @@
   "author": "Trevor Hanus, Cody B. Daig",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.14.0",
     "chai": "^3.2.0",
     "express": "^4.13.3",
     "mysql": "^2.9.0",

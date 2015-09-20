@@ -3,8 +3,8 @@
 var expect = require('chai').expect;
 var request = require('supertest');
 
-var app = require('../lib/express.js');
-var core = require('../app/controllers/core.controllers.js');
+var app = require('../../lib/express.js');
+var core = require('../../app/controllers/core.controllers.js');
 
 describe('Core Controllers', function () {
 
@@ -14,12 +14,12 @@ describe('Core Controllers', function () {
 
   it('should send \'Hello', function (done) {
     request(app)
-    .get('/')
-    .expect(200)
-    .end(function (err) {
-      expect(err).to.equal(null);
-      done();
-    });
+      .get('/')
+      .expect(200)
+      .end(function (err) {
+        expect(err).to.equal(null);
+        done();
+      });
   });
 
 });
