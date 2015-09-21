@@ -23,12 +23,11 @@ function signupPhoneNumber (req, res) {
     code: '1234',
     PhoneNumber: req.body.PhoneNumber
   };
-
   db.Users.signupPhoneNumber(user)
     .then(function (data) {
       if (data) {
         // send code
-        // console.log('sending code: ', user.code);
+        // doconsole.log('sending code: ', user.code);
       }
       return 'Success';
     })

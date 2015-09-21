@@ -4,6 +4,7 @@
   "description": "slack for construction",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "gulp test"
   },
   "author": "Trevor Hanus, Cody B. Daig",
@@ -11,6 +12,7 @@
   "dependencies": {
     "body-parser": "^1.14.0",
     "chai": "^3.2.0",
+    "cors": "^2.7.1",
     "express": "^4.13.3",
     "mysql": "^2.9.0",
     "q": "^1.4.1",
