@@ -1,10 +1,21 @@
 'use strict';
 
 var db = require('../../lib/db');
+var twilio = require('../../lib/twilio');
 
 exports.signupPhoneNumber = signupPhoneNumber;
 
 //////////
+
+function catchError (req, res) {
+  return function (err) {
+    if(err.code === 'ER_DUP_ENTRY') {
+      res.status(409).send(err);
+    } else {
+      res.status(500).send(err);
+    }
+  }
+}
 
 function send200 (req, res) {
   return function (data) {
@@ -12,25 +23,21 @@ function send200 (req, res) {
   }
 }
 
-function send500 (req, res) {
-  return function (err) {
-    res.status(500).send(err);
-  }
-}
-
 function signupPhoneNumber (req, res) {
   var user = {
-    code: '1234',
+    code: Math.floor(Math.random() * 10000),
     PhoneNumber: req.body.PhoneNumber
   };
   db.Users.signupPhoneNumber(user)
     .then(function (data) {
       if (data) {
-        // send code
-        // doconsole.log('sending code: ', user.code);
+        return twilio.sendCode(user)
+          .then(function () {
+            return 'Success';
+          });
       }
       return 'Success';
     })
     .then(send200(req, res))
-    .catch(send500(req, res));
+    .catch(catchError(req, res));
 }
