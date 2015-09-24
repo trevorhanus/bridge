@@ -4,6 +4,7 @@ var db = require('../../lib/db');
 var twilio = require('../../lib/twilio');
 
 exports.signupPhoneNumber = signupPhoneNumber;
+exports.signupVerifyCode = signupVerifyCode;
 
 //////////
 
@@ -28,6 +29,7 @@ function signupPhoneNumber (req, res) {
     code: Math.floor(Math.random() * 10000),
     PhoneNumber: req.body.PhoneNumber
   };
+
   db.Users.signupPhoneNumber(user)
     .then(function (data) {
       if (data) {
@@ -37,6 +39,24 @@ function signupPhoneNumber (req, res) {
           });
       }
       return 'Success';
+    })
+    .then(send200(req, res))
+    .catch(catchError(req, res));
+}
+
+function signupVerifyCode (req, res) {
+  var user = {
+    code: req.body.code,
+    PhoneNumber: req.body.PhoneNumber
+  };
+
+  db.Users.verifyPhoneNumber(user)
+    .then(function (data) {
+      if(data === true) {
+        return 'Success';
+      } else {
+        return 'Not Valid';
+      }
     })
     .then(send200(req, res))
     .catch(catchError(req, res));

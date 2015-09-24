@@ -31,5 +31,16 @@ module.exports = function (db) {
 
   };
 
+  Users.verifyPhoneNumber = function (user) {
+    return db.query('SELECT * FROM TempPhoneNumber WHERE PhoneNumber=\'' + user.PhoneNumber + '\'')
+      .then(function (rows) {
+        if(rows.length > 0 && rows[0].code === user.code) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+  };
+
   db.Users = Users;
 };
