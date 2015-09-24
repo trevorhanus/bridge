@@ -20,10 +20,10 @@ module.exports = function (db) {
     var salt = bcrypt.genSaltSync(10);
 
     var sql = 'INSERT INTO Users (FirstName, LastName, Email, PhoneNumber, Password, Salt) VALUES (' +
-      user.FirstName + ', ' +
-      user.LastName + ', ' +
+      '\'' + user.FirstName + '\', ' +
+      '\'' + user.LastName + '\', ' +
       '\'' + user.Email + '\', ' +
-      user.PhoneNumber + ', ' +
+      '\'' + user.PhoneNumber + '\', ' +
       '\'' + bcrypt.hashSync(user.Password, salt) + '\', ' +
       '\'' + salt + '\'' +
       ')';
