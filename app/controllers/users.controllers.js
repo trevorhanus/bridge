@@ -11,6 +11,7 @@ exports.signupVerifyCode = signupVerifyCode;
 
 function catchError (req, res) {
   return function (err) {
+    console.error(err);
     if(err.code === 'ER_DUP_ENTRY') {
       res.status(409).send(err);
     } else {
@@ -21,6 +22,7 @@ function catchError (req, res) {
 
 function send200 (req, res) {
   return function (data) {
+    console.log(data);
     res.status(200).send(data);
   }
 }
