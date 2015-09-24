@@ -35,6 +35,7 @@ function createUsersTable () {
     'FirstName VARCHAR(255), ' +
     'LastName VARCHAR(255), ' +
     'PhoneNumber VARCHAR(10), ' +
+    'Email VARCHAR(255), ' +
     'Password VARCHAR(255), ' +
     'Salt VARCHAR(255), ' +
     'Created_At TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ' +
