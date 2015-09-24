@@ -24,8 +24,8 @@ module.exports = function (db) {
       user.LastName + ', ' +
       '\'' + user.Email + '\', ' +
       user.PhoneNumber + ', ' +
-      bcrypt.hashSync(user.Password, salt) + ', ' +
-      salt +
+      '\'' + bcrypt.hashSync(user.Password, salt) + '\', ' +
+      '\'' + salt + '\'' +
       ')';
 
     console.log(sql);
