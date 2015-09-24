@@ -1,5 +1,7 @@
 'use strict';
 
+var bcrypt = require('bcryptjs');
+
 module.exports = function (db) {
   var Users = {};
 
@@ -11,6 +13,25 @@ module.exports = function (db) {
     return db.query('SELECT COUNT(PhoneNumber) FROM Users WHERE PhoneNumber=\'' + phoneNumber + '\'')
       .then(function (data) {
         return data[0]['COUNT(PhoneNumber)'];
+      });
+  };
+
+  Users.signup = function (user) {
+    var salt = bcrypt.genSaltSync(10);
+
+    return db.query('INSERT INTO Users (FirstName, LastName, Email, PhoneNumber, Password, Salt) VALUES (' +
+      user.FirstName + ', ' +
+      user.LastName + ', ' +
+      user.Email + ', ', +
+      user.PhoneNumber + ', ' +
+      bcrypt.hashSync(user.Password, salt) + ', ' +
+      salt +
+      ')')
+      .then(function () {
+        return true;
+      })
+      .catch(function (error) {
+        throw error;
       });
   };
 
@@ -34,7 +55,6 @@ module.exports = function (db) {
   Users.verifyPhoneNumber = function (user) {
     return db.query('SELECT * FROM TempPhoneNumber WHERE PhoneNumber=\'' + user.PhoneNumber + '\'')
       .then(function (rows) {
-        console.log(rows);
         if(rows.length > 0 && rows[0].code === user.code) {
           return true;
         } else {

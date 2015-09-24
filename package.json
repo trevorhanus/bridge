@@ -10,6 +10,7 @@
   "author": "Trevor Hanus, Cody B. Daig",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.3.0",
     "body-parser": "^1.14.0",
     "chai": "^3.2.0",
     "cors": "^2.7.1",

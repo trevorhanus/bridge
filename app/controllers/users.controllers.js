@@ -3,6 +3,7 @@
 var db = require('../../lib/db');
 var twilio = require('../../lib/twilio');
 
+exports.signup = signup;
 exports.signupPhoneNumber = signupPhoneNumber;
 exports.signupVerifyCode = signupVerifyCode;
 
@@ -22,6 +23,24 @@ function send200 (req, res) {
   return function (data) {
     res.status(200).send(data);
   }
+}
+
+function signup (req, res) {
+  var user = {
+    PhoneNumber: req.body.PhoneNumber,
+    code: req.body.code
+  };
+
+  db.Users.signup(user)
+    .then(function (data) {
+      if(data === true) {
+        return 'Success';
+      } else {
+        return 'Something Went Wrong';
+      }
+    })
+    .then(send200(req, res))
+    .catch(catchError(req, res));
 }
 
 function signupPhoneNumber (req, res) {
@@ -49,7 +68,7 @@ function signupVerifyCode (req, res) {
     code: req.body.code,
     PhoneNumber: req.body.PhoneNumber
   };
-  console.log(user);
+
   db.Users.verifyPhoneNumber(user)
     .then(function (data) {
       if(data === true) {

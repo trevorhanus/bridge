@@ -10,7 +10,7 @@ module.exports = db.query('CREATE DATABASE IF NOT EXISTS ' + dbName)
   .then(createTempPhoneNumberIndex)
   .then(dropTable('Users'))
   .then(createUsersTable)
-  //.then(done)
+  .then(done)
   .catch(error);
 
 //////////
@@ -36,17 +36,18 @@ function createUsersTable () {
     'LastName VARCHAR(255), ' +
     'PhoneNumber VARCHAR(10), ' +
     'Password VARCHAR(255), ' +
-    'Status VARCHAR(20), ' +
+    'Salt VARCHAR(255), ' +
     'Created_At TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ' +
     'PRIMARY KEY (ID)' +
     ')');
 }
 
-//function done () {
-//  console.log('Finished Recreating the Database! :-D');
-//  console.log('Go Enjoy the party!');
-//  process.exit(0);
-//}
+function done () {
+  console.log('Finished Recreating the Database! :-D');
+  console.log('Go Enjoy the party!');
+  return;
+  //process.exit(0);
+}
 
 function dropTable (table) {
   return function() {
