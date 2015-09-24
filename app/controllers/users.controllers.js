@@ -28,7 +28,11 @@ function send200 (req, res) {
 function signup (req, res) {
   var user = {
     PhoneNumber: req.body.PhoneNumber,
-    code: req.body.code
+    Code: req.body.Code,
+    FirstName: req.body.FirstName,
+    LastName: req.body.LastName,
+    Email: req.body.Email,
+    Password: req.body.Password
   };
 
   db.Users.signup(user)
