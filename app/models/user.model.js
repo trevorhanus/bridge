@@ -19,14 +19,18 @@ module.exports = function (db) {
   Users.signup = function (user) {
     var salt = bcrypt.genSaltSync(10);
 
-    return db.query('INSERT INTO Users (FirstName, LastName, Email, PhoneNumber, Password, Salt) VALUES (' +
+    var sql = 'INSERT INTO Users (FirstName, LastName, Email, PhoneNumber, Password, Salt) VALUES (' +
       user.FirstName + ', ' +
       user.LastName + ', ' +
-      '\'' + user.Email + '\', ', +
+      '\'' + user.Email + '\', ' +
       user.PhoneNumber + ', ' +
       bcrypt.hashSync(user.Password, salt) + ', ' +
       salt +
-      ')')
+      ')';
+
+    console.log(sql);
+
+    return db.query(sql)
       .then(function () {
         return true;
       })
