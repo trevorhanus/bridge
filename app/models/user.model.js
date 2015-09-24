@@ -22,7 +22,7 @@ module.exports = function (db) {
     return db.query('INSERT INTO Users (FirstName, LastName, Email, PhoneNumber, Password, Salt) VALUES (' +
       user.FirstName + ', ' +
       user.LastName + ', ' +
-      user.Email + ', ', +
+      '\'' + user.Email + '\', ', +
       user.PhoneNumber + ', ' +
       bcrypt.hashSync(user.Password, salt) + ', ' +
       salt +
