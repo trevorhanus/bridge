@@ -49,7 +49,7 @@ function signupVerifyCode (req, res) {
     code: req.body.code,
     PhoneNumber: req.body.PhoneNumber
   };
-
+  console.log(user);
   db.Users.verifyPhoneNumber(user)
     .then(function (data) {
       if(data === true) {
